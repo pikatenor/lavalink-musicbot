@@ -49,6 +49,7 @@ module.exports = class MusicHandler {
             guild: this.guild.id,
             node: this.node.id
         }, { selfdeaf: true });
+        await this.setVolume(this.volume);
 
         this.player
             .on("start", () => {
