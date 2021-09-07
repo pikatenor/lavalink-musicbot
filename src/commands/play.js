@@ -23,7 +23,7 @@ module.exports = {
         if (!query) return msg.channel.send(util.embed().setDescription("❌ | Missing args."));
 
         try {
-            const { loadType, playlistInfo: { name }, tracks } = await music.load(util.isValidURL(query) ? query : `ytsearch:${query}`);
+            const { loadType, playlistInfo: { name }, tracks } = await music.load(lavalinkQuery(query));
             if (!tracks.length) return msg.channel.send(util.embed().setDescription("❌ | Couldn't find any results."));
             
             if (loadType === "PLAYLIST_LOADED") {
@@ -49,3 +49,9 @@ module.exports = {
         }
     }
 };
+
+function lavalinkQuery(query) {
+  if ( util.isValidURL(query) ) return query
+  if ( query.startsWith('/music/') ) return query
+  return `ytsearch:${query}`
+}
