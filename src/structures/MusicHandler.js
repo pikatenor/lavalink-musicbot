@@ -5,7 +5,7 @@ module.exports = class MusicHandler {
     /** @param {import("discord.js").Guild} guild */
     constructor(guild) {
         this.guild = guild;
-        this.volume = 100;
+        this.volume = parseInt(process.env.DEFAULT_VOLUME || 100);
         this.loop = 0; // 0 = none; 1 = track; 2 = queue;
         this.previous = null;
         this.current = null;
@@ -34,7 +34,7 @@ module.exports = class MusicHandler {
 
     reset() {
         this.loop = 0;
-        this.volume = 100;
+        this.volume = parseInt(process.env.DEFAULT_VOLUME || 100);
         this.previous = null;
         this.current = null;
         this.queue = [];
