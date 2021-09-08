@@ -1,2 +1,3 @@
 require("dotenv/config");
-require("./src/bot");
+const bot = require("./src/bot");
+const server = require("./src/server")(bot);

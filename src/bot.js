@@ -5,3 +5,5 @@ const client = new MusicClient({
 });
 
 client.build();
+
+module.exports = client;
